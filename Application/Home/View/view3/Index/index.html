@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+
+    <title>首页 - <{$sitename}></title>
+    <meta charset="UTF-8">
+    <meta content="width=device-width,initial-scale=1.0" name="viewport"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="telephone=no" name="format-detection"/>
+    <meta content="address=no" name="format-detection"/>
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" type="text/css" href="<{$style}>css/common.css">
+    <link rel="stylesheet" type="text/css" href="<{$style}>css/index.css">
+    <link rel="stylesheet" type="text/css" href="<{$style}>css/header.css"/>
+    <link rel="stylesheet" type="text/css" href="<{$style}>css/sectioniphone.css"/>
+    <link rel="stylesheet" type="text/css" href="<{$style}>css/sectiontransfer.css"/>
+    <link rel="stylesheet" type="text/css" href="<{$style}>css/footer.css"/>
+    <link rel="stylesheet" type="text/css" href="<{$style}>css/test_index_requireFromJS.css"/>
+
+    <script type="text/javascript" charset="utf-8" data-framework src="<{$style}>js/TweenMax.min.js"></script>
+    <script data-loader src="<{$style}>js/base.js"></script>
+    <script type="text/javascript" src="<{$style}>js/header.js"></script>
+    <script type="text/javascript" src="<{$style}>js/sectioniphone.js"></script>
+    <script type="text/javascript" src="<{$style}>js/footer.js"></script>
+    <script type="text/javascript" src="<{$style}>js/jquery.scroll.js"></script>
+    <script type="text/javascript" src="<{$style}>js/bootstrap-datepicker.js"></script>
+    <script type="text/javascript" src="<{$style}>js/index.js"></script>
+
+    <style type="text/css">
+        .payment .center_box {
+            height: 140px;
+            width: 175px;
+            margin-top: 40px;
+            border-right: 1px solid #ECECEC;
+            margin-left: 0 !important;
+        }
+
+        .payment .center_box:hover {
+            border-right: none !important;
+        }
+
+        .payment_top:hover .active {
+            -ms-filter: "progid: DX<{$style}>image/Transform.Microsoft.Shadow(Strength=4, Direction=135, Color='#888888')";
+            filter: "progid: DX<{$style}>image/Transform.Microsoft.Shadow(Strength=4, Direction=135, Color='#888888')";
+            box-shadow: 0px 0px 4px 2px #e4e4e4;
+        }
+
+        .lift .center_box {
+            height: 140px;
+            width: 157px;
+            margin-top: 40px;
+            border-right: 1px solid #ECECEC;
+        }
+
+        .lift .center_box:hover {
+            border-right: none !important;
+        }
+
+        .lift_top:hover .active {
+            -ms-filter: "progid: DX<{$style}>image/Transform.Microsoft.Shadow(Strength=4, Direction=135, Color='#888888')";
+            filter: "progid: DX<{$style}>image/Transform.Microsoft.Shadow(Strength=4, Direction=135, Color='#888888')";
+            box-shadow: 0px 0px 4px 2px #e4e4e4;
+        }
+
+        .fixe_top a:hover {
+            background-color: #0068b6;
+            border-radius: 5px
+        }
+
+        .payment .payment_left .view:hover {
+            background-color: #0068b6;
+            border-radius: 5px
+        }
+
+        .payment .payment_top .centre {
+            width: 950px
+        }</style>
+</head>
+
+<body class="pageindex">
+
+
+<include file="header"/>
+
+<section class="banner">
+    <div id="myCarousel" class="carousel slide">
+        <!-- 轮播（Carousel）指标 -->
+        <ol class="carousel-indicators">
+            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#myCarousel" data-slide-to="1"></li>
+            <li data-target="#myCarousel" data-slide-to="2"></li>
+            <!-- <li data-target="#myCarousel" data-slide-to="3"></li> -->
+        </ol>
+        <!-- 轮播（Carousel）项目 -->
+        <div class="carousel-inner">
+            <div class="item active">
+                <img src="<{$style}>image//jichengzhifuzhuangjia.png" alt="First slide">
+                <!--只有第一页登录注册-->
+                <div class="fixe">
+
+                    <div class="fixe_top">
+                        <a href="<{$user_login}>">登 &nbsp;录</a>
+                    </div>
+                    <div class="fixe_bottom">
+                        <a href="<{$register}>">注&nbsp; 册</a>
+                    </div>
+
+                </div>
+            </div>
+            <div class="item">
+                <img src="<{$style}>image//banner5.jpg" alt="Second slide">
+            </div>
+            <div class="item">
+                <img src="<{$style}>image//banner3.png" alt="Third slide">
+            </div>
+
+        </div>
+        <!-- 轮播（Carousel）导航 -->
+        <a class="carousel-control left" href="#myCarousel" data-slide="prev"></a>
+        <a class="carousel-control right" href="#myCarousel" data-slide="next"></a>
+    </div>
+</section>
+
+<!--第一部分     公告-->
+<section class="announcement centre clearfix">
+    <div style="padding: 20px 0 36px 0px;width: 32%;">
+        <div class="border clearfix">
+            <p>专一专业</p>
+            <div style="float: left;margin-top:18px;">
+                <img src="<{$style}>image//fuwu.png" alt=""/>
+            </div>
+            <div class="announcement_right">
+                <span>我们致力于为用户打造安全、便捷、专业的</span>
+                <span>支付平台，便捷交易，快速到账，操作方</span>
+                <span>便，一站式服务，打造您专属的支付站点</span>
+            </div>
+        </div>
+    </div>
+    <div>
+        <div class="border clearfix">
+            <p>安全保障</p>
+            <div style="float: left;margin-top:12px;">
+                <img src="<{$style}>image//anquanbaozhang.png" alt=""/>
+            </div>
+            <div class="announcement_right">
+                <span>严格的资金监管，健全的制度，J2EE技术架</span>
+                <span>构，双密码保护，加密传输存储，为您的资</span>
+                <span>金安全保驾护航</span>
+            </div>
+        </div>
+    </div>
+
+    <div>
+        <div class="border clearfix">
+            <p>极速响应</p>
+            <div style="float: left;margin-top:12px;">
+                <img src="<{$style}>image//jisuxiangying.png" alt=""/>
+            </div>
+            <div class="announcement_right">
+                <span>全天候的技术监控护航，保障</span>
+                <span>7x24小时全天无休，工程师级别的呵护</span>
+                <span>是您支付路上的好伙伴</span>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+<!-- <script src="sectioniphone.js" charset="utf-8"></script> -->
+<div class="sectioniphone">
+
+    <section class="welcome centre clearfix">
+
+        <div class="welcome_left centre">
+            <h1>简单&nbsp;快速&nbsp;安全</h1>
+            <p>致力于为用户打造最贴心的支付接口，提供“简单、快速、安全”的支付服务</p>
+
+            <section class="hero fullheight">
+                <div class="row align-center clearfix">
+                    <div class="columns fullheight-column-align">
+                        <div class="row">
+                            <div class="columns align-self-middle" style="margin-left: 8px;">
+                                <div class="hero-scene-intro">
+                                    <div class="viewport hide-for-small-only">
+                                        <ul class="hero-scene-text">
+
+                                            <li>
+                                                <h1 class="title" data-t="index.hero.scene.transfer"><p></p>
+                                                    <p style="margin-top: 30px;font-size:25px;">优质服务，省时省心</p></h1>
+                                                <h4 class="intro1" data-t="index.hero.subheading"
+                                                    style="width: 410px;font-size: 14px;color: #585858;line-height:30px;">
+                                                    强力的技术支持，接口对接检查，做支付更安心
+                                                </h4>
+                                            </li>
+                                            <li>
+                                                <h1 class="title" data-t="index.hero.scene.offline"><p></p>
+                                                    <p style="margin-top: 30px;font-size: 25px;">便捷支付，全方位安全保护</p></h1>
+                                                <h4 class="intro1" data-t="index.hero.subheading"
+                                                    style="width: 410px;font-size: 14px;color: #585858;line-height:30px;">
+                                                    全面网络支付方式，覆盖国内主流支付接口，<br/>严密流程及专业风控团队
+                                                </h4>
+                                            </li>
+                                            <li>
+                                                <h1 class="title" data-t="index.hero.scene.web"><p></p>
+                                                    <p style="margin-top: 30px;font-size:25px;">无立即签约，马上使用</p></h1>
+                                                <h4 class="intro1" data-t="index.hero.subheading"
+                                                    style="width: 410px;font-size: 14px;color: #585858;line-height:30px;">
+                                                    完备的通道接口，费率低<br/>
+                                                    资金结算更自由，更有多渠道选择
+
+                                                </h4>
+                                            </li>
+                                            <li>
+                                                <h1 class="title" data-t="index.hero.scene.app"><p></p>
+                                                    <p style="margin-top:30px;font-size:25px;">操作便捷，安全保障</p></h1>
+                                                <h4 class="intro1" data-t="index.hero.subheading"
+                                                    style="width: 410px;font-size: 14px;color: #585858;line-height:30px;">
+                                                    详细的对接api文档，以及详细的demo示例，<br/>让支付接口对接没有压力
+                                                </h4>
+
+                                            </li>
+                                            <li>
+                                                <h1 class="title" data-t="index.hero.scene.transfer"><p></p>
+                                                    <p style="margin-top: 30px;font-size:25px;">安全稳定，多种防护</p></h1>
+                                                <h4 class="intro1" data-t="index.hero.subheading"
+                                                    style="width: 410px;font-size: 14px;color: #585858;line-height:30px;">
+                                                    服务器集群部署；<br/>异地容灾备份，数据安全
+                                                </h4>
+                                            </li>
+                                            <li>
+                                                <h1 class="title" data-t="index.hero.scene.transfer"><p></p>
+                                                    <p style="margin-top: 30px;font-size:25px;">优质服务，省时省心</p></h1>
+                                                <h4 class="intro1" data-t="index.hero.subheading"
+                                                    style="width: 410px;font-size: 14px;color: #585858;line-height:30px;">
+                                                    7 x 24 小时值班技术，随时处理问题，放心保证
+                                                </h4>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    </h1>
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hero-bg home" style="left: 300px;position: relative;">
+                    <div class="row align-right" style="background-color: #fff;">
+                        <div class="columns align-self-middle">
+                            <div class="line-box-wrap">
+                                <div class="line-box-viewport">
+                                    <div class="line-boxes">
+                                        <div class="box web"></div>
+                                        <div class="box apple-pay"></div>
+                                        <div class="box hongbao"></div>
+                                        <div class="box qr"></div>
+                                        <div class="box fuwu"></div>
+                                        <div class="box web"></div>
+                                        <div class="box apple-pay"></div>
+                                        <div class="box hongbao"></div>
+                                        <div class="box qr"></div>
+                                        <div class="box fuwu"></div>
+                                        <div class="box web"></div>
+                                        <div class="box apple-pay"></div>
+                                        <div class="box hongbao"></div>
+                                        <div class="box qr"></div>
+                                        <div class="box fuwu"></div>
+                                        <div class="box web"></div>
+                                        <div class="box apple-pay"></div>
+                                        <div class="box hongbao"></div>
+                                        <div class="box qr"></div>
+                                        <div class="box fuwu"></div>
+                                    </div>
+                                    <div class="scene-slider-wrap">
+                                        <!--<div class="iphone-hand-bg"></div>-->
+                                        <div class="device-iphone6" id="iphone6">
+                                            <!--<div class="topbar">
+                                                <span class="camera"></span>
+                                                <span class="speaker-before"></span>
+                                                <span class="speaker"></span>
+                                            </div>-->
+                                            <!-- <span class="home"></span>-->
+                                            <div class="screen">
+                                                <div class="scene-viewport">
+                                                    <div class="scene-viewes">
+                                                        <div class="scene apple-pay"></div>
+                                                        <div class="scene hongbao"></div>
+                                                        <div class="scene qr"></div>
+                                                        <div class="scene fuwu"></div>
+                                                        <div class="scene web"></div>
+                                                        <div class="scene apple-pay"></div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+        <div class="row"></div>
+
+    </section>
+</div>
+
+<!--第三部分   转账付款-->
+<section class="sectionA payment">
+    <div style="background-color: #F7F7F7;overflow: hidden;">
+        <div class="container" style="padding-left: 0px;margin-top: 0;">
+            <div class="row">
+                <div class="col-md-4" style="float: left;">
+                    <div class="bglight">
+                        <div class="payment_left">
+                            <h1>多种支付渠道</h1>
+                            <p>一次接入我们的SDK，意味着同时支持 Apple Pay、微信、支付 宝等多种支付渠道，并且，所有交易一目了然，为您提供更快捷更安全的在线支付交易</p>
+                            <a href="login.html">
+                                <div class="view">立即接入</div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-8" style="float: right;">
+                    <div class="bgpics">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="payment_top">
+        <div class="centre clearfix">
+            <div class="beautify active">
+                <a href="javascript:void(0)">
+                    <div class="center_box">
+                        <img src="<{$style}>image//zzyinshengbao.png" alt=""/>
+                        <p>极速提现</p>
+                    </div>
+                </a>
+            </div>
+
+            <div class="beautify">
+                <a href="javascript:void(0)">
+                    <div class="center_box">
+                        <img src="<{$style}>image//zzbankzhanghu.png" alt=""/>
+                        <p>转账到银行帐户</p>
+                    </div>
+                </a>
+            </div>
+
+            <div class="beautify">
+                <a href="javascript:void(0)">
+                    <div class="center_box">
+                        <img src="<{$style}>image//xiangduorenfukuan.png" alt=""/>
+                        <p>向多人付款</p>
+                    </div>
+                </a>
+            </div>
+
+            <div class="beautify">
+                <a href="javascript:void(0)">
+                    <div class="center_box">
+                        <img src="<{$style}>image//api.png" alt=""/>
+                        <p>代付api</p>
+                    </div>
+                </a>
+            </div>
+
+            <div class="beautify">
+                <a href="javascript:void(0)">
+                    <div class="center_box">
+                        <img src="<{$style}>image//dui.png" alt=""/>
+                        <p>实时到账</p>
+                    </div>
+                </a>
+            </div>
+
+
+        </div>
+    </div>
+
+    <div class="payment_buttom">
+        <h1>核心技术 &nbsp; 支付先锋</h1>
+        <div class="payment_buttom_box">
+            <p>汇聚当下主流的支付通道接口，并且独家两级轮询机制，保障支付接口稳定，助您轻松支付。独创风控机制，接口更持久，更放心！ </p>
+        </div>
+    </div>
+</section>
+
+<!--第四部分   -->
+<section class="lift">
+    <div class="lijishiyong">
+        <img src="<{$style}>image//banner4.png" style="width: 100%; overflow: hidden;" alt=""/>
+        <em class="lijishiyong_a"><a href="login.html">立即使用</a></em>
+        <div class="lift_tu">
+            <em class="em1"></em>
+            <em class="em2"></em>
+            <em class="em3"></em>
+        </div>
+
+        <div class="lift_tu1">
+        </div>
+
+    </div>
+
+    <div class="lift_top">
+        <div class="centre clearfix">
+            <div class="beautify active">
+                <a href="javascript:void(0);">
+                    <div class="center_box">
+                        <img src="<{$style}>image//gonggongshiyejiaofei.png" alt=""/>
+                        <p>公共事业缴费</p>
+                    </div>
+                </a>
+            </div>
+            <div class="beautify">
+                <a href="javascript:void(0);">
+                    <div class="center_box">
+                        <img src="<{$style}>image//shoujichongzhi.png" alt=""/>
+                        <p>手机充值</p>
+                    </div>
+                </a>
+            </div>
+            <div class="beautify">
+                <a href="javascript:void(0)">
+                    <div class="center_box">
+                        <img src="<{$style}>image//xinyongkahuankuan.png" alt=""/>
+                        <p>信用卡还款</p>
+                    </div>
+                </a>
+            </div>
+            <div class="beautify">
+                <a href="javascript:void(0)">
+                    <div class="center_box">
+                        <img src="<{$style}>image//youxichongzhi.png" alt=""/>
+                        <p>游戏充值</p>
+                    </div>
+                </a>
+            </div>
+            <div class="beautify">
+                <a href="javascript:void(0)">
+                    <div class="center_box">
+                        <img src="<{$style}>image//jiayoukachongzhi.png" alt=""/>
+                        <p>加油卡充值</p>
+                    </div>
+                </a>
+            </div>
+            <div class="beautify">
+                <a href="javascript:void(0)">
+                    <div class="center_box">
+                        <img src="<{$style}>image//dianyingpiao.png" alt=""/>
+                        <p>电影票</p>
+                    </div>
+                </a>
+            </div>
+            <div class="beautify">
+                <a href="javascript:void(0)">
+                    <div class="center_box">
+                        <img src="<{$style}>image//yiliaoyuyue.png" alt=""/>
+                        <p>医疗预约</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!--第五部分   合作银行/合作机构-->
+<section class="cooperation">
+    <div class="centre">
+        <p style="margin-bottom: 10px;">合作银行</p>
+        <ul class="clearfix">
+            <li><img src="<{$style}>image//gongshangyinhang.png" alt=""/></li>
+            <li><img src="<{$style}>image//nongyeyinhang.png" alt=""/></li>
+            <li><img src="<{$style}>image//zhongguoyinhang.png" alt=""/></li>
+            <li><img src="<{$style}>image//jiansheyinhang.png" alt=""/></li>
+            <li><img src="<{$style}>image//hezuoyinhang5.png" alt=""/></li>
+            <li><img src="<{$style}>image//hezuoyinhang6.png" alt=""/></li>
+        </ul>
+        <ul class="clearfix">
+            <li><img src="<{$style}>image//hezuoyinhang7.png" alt=""/></li>
+            <li><img src="<{$style}>image//hezuoyinhang8.png" alt=""/></li>
+            <li><img src="<{$style}>image//hezuoyinhang9.png" alt=""/></li>
+            <li><img src="<{$style}>image//hezuoyinhang10.png" alt=""/></li>
+            <li><img src="<{$style}>image//hezuoyinhang11.png" alt=""/></li>
+            <li><img src="<{$style}>image//hezuoyinhang12.png" alt=""/></li>
+        </ul>
+    </div>
+
+    <!--联系方式-->
+    <div class="centre clearfix" style="margin-top: 20px;">
+        <p style="margin-bottom:10px ;">联系方式</p>
+        <div class="centre_time">
+            <p>服务时间：工作日9：00-21：30</p>
+            <p style="padding: 8px 0;">
+                <img src="<{$style}>image//lianxifangshidianhuashi.png" alt="" style="vertical-align: middle;"/> &nbsp;&nbsp;
+                <em>(全国)</em>
+            </p>
+            <p>邮箱地址：info@baidu.com </p>
+        </div>
+        <div class="centre_time">
+            <p>战略城市</p>
+            <p class="city">
+                <em>北京</em>
+                <em>沈阳</em>
+                <em>上海</em>
+                <em>南京</em>
+                <em>合肥</em>
+                <em>广州</em>
+                <em>深圳</em>
+                <em>东莞</em>
+                <em>南宁</em>
+                <em>重庆</em>
+                <em>成都</em>
+                <em>西安</em>
+            </p>
+        </div>
+        <div class="centre_time">
+            <p>商务合作</p>
+            <p>电话：020-29046651&nbsp;&nbsp; 市场部</p>
+            <p>企业QQ：8001234567</p>
+            <p>联系邮箱：info@baidu.com</p>
+        </div>
+    </div>
+</section>
+
+
+<style>
+    .kexin #kx_verify img {
+        z-index: 1;
+        border: none;
+        width: 126px;
+        height: 41px;
+        margin-top: -31px;
+        position: relative;
+        filter: grayscale(100%);
+        -webkit-filter: grayscale(100%);
+        filter: gray;
+        border-radius: 5px;
+    }
+
+    .kexin #kx_verify img:hover {
+        filter: grayscale(1%);
+        -webkit-filter: grayscale(1%);
+    }
+
+</style>
+<include file="foot"/>
+</body>
+</html>

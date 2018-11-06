@@ -1,0 +1,296 @@
+<include file="Public/header"/>
+<div class="row">
+  <div class="col-sm-12">
+    <if condition="$installpwd eq $member['password']">
+      <p class="bg-danger" style="padding:15px;">警告！您目前使用的是安装密码，请修改！</p>
+    </if>
+      <p class="bg-success" style="padding:15px;"> 用户名：<strong style="color:#036"><{$member
+        .username}></strong> |【<span style="color:#F30">
+            <switch name="member['groupid']">
+            <case value="1">总管理员</case>
+            <case value="2">运营管理员</case>
+			<case value="3">财务管理员</case>
+            </switch>
+        </span>】
+      </p>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-4">
+    <div class="ibox float-e-margins">
+      <div class="ibox-title">
+        <h5>平台总入金</h5>
+      </div>
+      <div class="ibox-content" style="height: 67px">
+        <h1 class="no-margins"><{$stat.allordersum}></h1>
+        <div class="stat-percent font-bold text-success">元</div>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-4" >
+    <div class="ibox float-e-margins">
+      <div class="ibox-title">
+        <h5>商户总分成</h5>
+      </div>
+      <div class="ibox-content" style="height: 67px">
+        <h1 class="no-margins"><{$stat.allmemberprofit}></h1>
+        <div class="stat-percent font-bold text-success">元</div>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-4" >
+    <div class="ibox float-e-margins">
+      <div class="ibox-title">
+        <h5>平台总分成</h5>
+      </div>
+      <div class="ibox-content" style="height: 67px">
+        <h1 class="no-margins"><{$stat.allplatformincome}></h1>
+        <div class="stat-percent font-bold text-success">元</div>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-4">
+    <div class="ibox float-e-margins">
+      <div class="ibox-title">
+        <h5>今日平台总入金</h5>
+      </div>
+      <div class="ibox-content" style="height: 67px">
+        <h1 class="no-margins"><{$stat.todayordersum}></h1>
+        <div class="stat-percent font-bold text-success">元</div>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-4" style="height: 140px">
+    <div class="ibox float-e-margins">
+      <div class="ibox-title">
+        <h5>今日商户总分成</h5>
+      </div>
+      <div class="ibox-content" style="height: 67px">
+        <h1 class="no-margins"><{$stat.todaymemberprofit}></h1>
+        <div class="stat-percent font-bold text-success">元</div>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-4" style="height: 140px">
+    <div class="ibox float-e-margins">
+      <div class="ibox-title">
+        <h5>今日平台总分成</h5>
+      </div>
+      <div class="ibox-content" style="height: 67px">
+        <h1 class="no-margins"><{$stat.todayplatformincome}></h1>
+        <div class="stat-percent font-bold text-success">元</div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+
+  <div class="col-md-6">
+    <div class="ibox float-e-margins">
+      <div class="ibox-title"><h5>今日交易统计</h5></div>
+      <div class="ibox-content no-padding">
+        <div class="panel-body">
+          <div id="dday" style="height: 180px;"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-6">
+    <div class="ibox float-e-margins">
+      <div class="ibox-title"><h5>7天交易统计</h5></div>
+      <div class="ibox-content no-padding">
+        <div class="panel-body">
+          <div id="dweek" style="height: 180px;"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-12">
+    <div class="ibox float-e-margins">
+      <div class="ibox-title"><h5>月度交易统计</h5></div>
+      <div class="ibox-content no-padding">
+        <div class="panel-body">
+          <div class="panel-group" id="version">
+            <div class="col-lg-12"><div id="dmonth" style="height:280px;"></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+<!-- 全局js -->
+<include file="Public/footer"/>
+<script src="/Public/Front/js/echarts.common.min.js"></script>
+<script>
+    layui.use(['laypage', 'layer', 'form'], function () {
+        var form = layui.form,
+            layer = layui.layer,
+            $ = layui.jquery;
+        });
+    function reset_pwd(title,url,w,h){
+      x_admin_show(title,url,w,h);
+    }
+</script>
+<script>
+    var myChartday = echarts.init(document.getElementById('dday'));
+    var myChartweek = echarts.init(document.getElementById('dweek'));
+    var myChartmonth = echarts.init(document.getElementById('dmonth'));
+    // 使用刚指定的配置项和数据显示图表。
+    myChartday.setOption({
+        title:{
+            text:'实时统计(共<{$ddata.num}>笔)',
+            x:'center'
+        },
+        tooltip: {
+            trigger: 'item',
+            formatter: "{a} <br/>{b}: {c} ({d}%)"
+        },
+        legend: {
+            orient: 'vertical',
+            x: 'left',
+            data:['今日交易金额','今日收入金额','今日支持金额']
+        },
+        series: [
+            {
+                name:'交易统计',
+                type:'pie',
+                radius: ['50%', '70%'],
+                avoidLabelOverlap: false,
+                label: {
+                    normal: {
+                        show: false,
+                        position: 'center'
+                    },
+                    emphasis: {
+                        show: true,
+                        textStyle: {
+                            fontSize: '14',
+                            fontWeight: 'bold'
+                        }
+                    }
+                },
+                labelLine: {
+                    normal: {
+                        show: false
+                    }
+                },
+                data:[
+                    {value:"<{$ddata.amount|default=0}>", name:'今日交易金额'},
+                    {value:"<{$ddata.rate|default=0}>", name:'今日收入金额'},
+                    {value:"<{$ddata.total|default=0}>", name:'今日支出金额'},
+                ]
+            }
+        ]
+    });
+    myChartweek.setOption({
+        title:{
+            text:'7天统计(共<{$wdata.num}>笔)',
+            x:'center'
+        },
+        tooltip: {
+            trigger: 'item',
+            formatter: "{a} <br/>{b}: {c} ({d}%)"
+        },
+        legend: {
+            orient: 'vertical',
+            x: 'left',
+            data:['7日交易金额','7日收入金额','7日支持金额']
+        },
+        series: [
+            {
+                name:'交易统计',
+                type:'pie',
+                radius: ['50%', '70%'],
+                avoidLabelOverlap: false,
+                label: {
+                    normal: {
+                        show: false,
+                        position: 'center'
+                    },
+                    emphasis: {
+                        show: true,
+                        textStyle: {
+                            fontSize: '14',
+                            fontWeight: 'bold'
+                        }
+                    }
+                },
+                labelLine: {
+                    normal: {
+                        show: false
+                    }
+                },
+                data:[
+                    {value:"<{$wdata.amount|default=0}>", name:'7日交易金额'},
+                    {value:"<{$wdata.rate|default=0}>", name:'7日收入金额'},
+                    {value:"<{$wdata.total|default=0}>", name:'7日支出金额'},
+                ]
+            }
+        ]
+    });
+    myChartmonth.setOption({
+        tooltip : {
+            trigger: 'axis',
+            axisPointer: {
+                type: 'cross',
+                label: {
+                    backgroundColor: '#6a7985'
+                }
+            }
+        },
+        legend: {
+            data:['交易金额','收入金额','支出金额']
+        },
+        toolbox: {
+            feature: {
+                saveAsImage: {}
+            }
+        },
+        grid: {
+            left: '3%',
+            right: '4%',
+            bottom: '3%',
+            containLabel: true
+        },
+        xAxis : [
+            {
+                type : 'category',
+                boundaryGap : false,
+                data : [<{$mdata.mdate|implode=","}>]
+            }
+        ],
+        yAxis : [
+            {
+                type : 'value'
+            }
+        ],
+        series : [
+            {
+                name:'交易金额',
+                type:'line',
+                stack: '总量',
+                areaStyle: {normal: {}},
+                data:[<{$mdata.amount|implode=","}>]
+            },
+            {
+                name:'收入金额',
+                type:'line',
+                stack: '总量',
+                areaStyle: {normal: {}},
+                data:[<{$mdata.rate|implode=","}>]
+            },
+            {
+                name:'支出金额',
+                type:'line',
+                stack: '总量',
+                areaStyle: {normal: {}},
+                data:[<{$mdata.total|implode=","}>]
+            },
+        ]
+    });
+</script>
+<{:tongji(0)}>
+</body>
+</html>

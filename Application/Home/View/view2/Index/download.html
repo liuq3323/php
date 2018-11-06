@@ -1,0 +1,91 @@
+<include file="header"/>
+    <div class="slideBox">
+        <div class="hd">
+            <ul>
+                <!-- <li>1</li>
+                <li>2</li> -->
+            </ul>
+        </div>
+        <div class="bd">
+            <ul>
+                <li style="background:url(<{$style}>style/banner.jpg) center center no-repeat;">
+                    <!-- <a href="https://www.juhe.cn" target="_blank"></a> -->
+                </li>
+            </ul>
+        </div>
+        <a class="prev" href="javascript:void(0)" target="_self">
+            <span></span>
+        </a>
+        <a class="next" href="javascript:void(0)" target="_self">
+            <span></span>
+        </a>
+    </div>
+</header>
+<section class="main">
+    <div class="tab">
+        <ul class="clearfix">
+            <li class="active">代码样例demo</li>
+
+        </ul>
+
+    </div>
+    <div class="document clearfix">
+        <div class="document-container">
+            <div class="download"><h2>SDK下载</h2>
+
+                <h2>代码样例demo</h2>
+                <ul class="demo-list clearfix">
+                    <li class="demo-item net">
+                        <div class="item-title">.net</div>
+                        <a href="#">立即下载</a></li>
+                    <li class="demo-item node">
+                        <div class="item-title">java</div>
+                        <a href="#">立即下载</a></li>
+                    <li class="demo-item python">
+                        <div class="item-title">python</div>
+                        <a href="#">立即下载</a></li>
+                    <li class="demo-item php">
+                        <div class="item-title">php</div>
+                        <a href="#">立即下载</a></li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+<include file="footer1200"/>
+<script src="<{$style}>js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="<{$style}>js/jquery.SuperSlide.2.1.1.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+    $(".slideBox").slide({
+        mainCell: ".bd ul",
+        titCell: '.hd li',
+        effect: "fold",
+        autoPlay: true,
+        interTime: 5000,
+        delayTime: 500,
+        trigger: "click"
+    });
+    $(".slideBox").hover(function() {
+        if($(".bd ul li").length > 1){
+            $(this).find(".prev,.next").stop(true, true).fadeIn();
+        }
+    }, function() {
+        $(this).find(".prev,.next").fadeOut();
+    });
+    $(".service-slide").slide({
+        mainCell: ".service-ul",
+        effect: "left",
+        vis: 6,
+        scroll: 1,
+        autoPlay: false,
+        autoPage: true,
+        pnLoop: true,
+        delayTime: 500,
+        trigger: "click"
+    });
+</script>
+</body>
+
+</html>

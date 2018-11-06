@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="renderer" content="webkit">
+<title><{:C("WEB_TITLE")}></title>
+<link rel="shortcut icon" href="favicon.ico">
+<link href="/Public/Front/css/bootstrap.min.css" rel="stylesheet">
+<link href="/Public/Front/css/font-awesome.min.css" rel="stylesheet">
+<link href="/Public/Front/css/animate.css" rel="stylesheet">
+<link href="/Public/Front/css/style.css" rel="stylesheet">
+<link rel="stylesheet" href="/Public/Front/js/plugins/layui/css/layui.css">
+<style>
+.layui-form-label {width:110px;padding:4px}
+</style>
+<body>
+    <div class="wrapper wrapper-content animated">
+        <div class="row">
+            <div class="col-sm-12">
+            <form class="layui-form" action="" id="payaccess">
+            <input type="hidden" name="data[id]" value="<{$data.id}>">
+            <input type="hidden" name="data[uid]" value="<{$uid}>">
+            <input type="hidden" name="data[channel_id]" value="<{$pid}>">
+              <div class="layui-form-item">
+                  <label class="layui-form-label">商户号(MCHID)：</label>
+                  <div class="layui-input-block">
+                    <input type="text" name="data[mch_id]" value="<{$data.mch_id}>" autocomplete="off" class="layui-input">
+                  </div>
+             </div>
+             <div class="layui-form-item">
+                  <label class="layui-form-label">MD5密钥：</label>
+                    <div class="layui-input-block">
+                        <input type="text" placeholder="MD5KEY 或 RSA 密钥" name="data[signkey]" value="<{$data.signkey}>" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+              
+              <div class="layui-form-item">
+                  <label class="layui-form-label">APPID：</label>
+                  <div class="layui-input-block">
+                    <input type="text" name="data[appid]" autocomplete="off" value="<{$data.appid}>" placeholder="公众号APPID或商家账号" class="layui-input">
+                  </div>
+             </div>
+             <div class="layui-form-item">
+                  <label class="layui-form-label">APPSECRET：</label>
+                  <div class="layui-input-block">
+                    <input type="text" name="data[appsecret]" autocomplete="off" value="<{$data.appsecret}>" placeholder="公众号APPSECRET或安全码" class="layui-input">
+                  </div>
+             </div>
+            <div class="layui-form-item">
+                  <label class="layui-form-label">公钥证书：</label>
+                    <div class="layui-input-block">
+                  <textarea name="data[public_key]" placeholder="请输入RSA，ASE的秘钥内容（或存放地址）" class="layui-textarea"><{$data.public_key}></textarea>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                  <label class="layui-form-label">私钥证书：</label>
+                    <div class="layui-input-block">
+                  <textarea name="data[private_key]" placeholder="请输入RSA，ASE的秘钥内容（或存放地址）" class="layui-textarea"><{$data.private_key}></textarea>
+                </div>
+            </div>
+
+              <div class="layui-form-item">
+                <label class="layui-form-label">状态：</label>
+                <div class="layui-input-block">
+                  <input type="radio" name="data[status]" <if condition="$data[status] eq 1">checked</if> value="1" title="开启" checked="">
+                  <input type="radio" name="data[status]" <if condition="$data[status] eq 0">checked</if> value="0" title="关闭">
+                </div>
+              </div>
+              <div class="layui-form-item">
+                <div class="layui-input-block">
+                  <button class="layui-btn" lay-submit="submit" lay-filter="add">提交保存</button>
+                </div>
+              </div>
+            </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="/Public/Front/js/jquery.min.js"></script>
+    <script src="/Public/Front/js/bootstrap.min.js"></script>
+    <script src="/Public/Front/js/plugins/peity/jquery.peity.min.js"></script>
+    <script src="/Public/Front/js/content.js"></script>
+    <script src="/Public/Front/js/plugins/layui/layui.js" charset="utf-8"></script>
+<!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
+<script>
+layui.use(['layer', 'form'], function(){
+  var form = layui.form
+  ,layer = layui.layer;
+  
+  //监听提交
+  form.on('submit(add)', function(data){
+    $.ajax({
+        url:"<{:U('UserNum/editNum')}>",
+        type:"post",
+        data:$('#payaccess').serialize(),
+        success:function(res){
+            if(res.status){
+                layer.alert("编辑成功", {icon: 6},function () {
+                    parent.location.reload();
+                    var index = parent.layer.getFrameIndex(window.name);
+                    parent.layer.close(index);
+                });
+            }else{
+                layer.msg("操作失败!", {icon: 5},function () {
+                    var index = parent.layer.getFrameIndex(window.name);
+                    parent.layer.close(index);
+                });
+                return false;
+            }
+        }
+    });
+    return false;
+  });
+
+  form.on('radio(custom_rate)', function(data) {
+    if (data.value == 1) {
+      $('#rate_group').show();
+    } else {
+      $('#rate_group').hide();
+    }
+  })
+});
+</script>
+<!--统计代码，可删除-->
+</body>
+</html>

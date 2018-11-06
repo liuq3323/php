@@ -1,0 +1,42 @@
+<nav class="navbar-default navbar-static-side" role="navigation">
+    <div class="nav-close"><i class="fa fa-times-circle"></i></div>
+    <div class="sidebar-collapse">
+        <ul class="nav" id="side-menu">
+            <li class="nav-header">
+                <div class="dropdown profile-element">
+            <span><img alt="image" class="img-circle" src="/Public/Front/img/avatar.jpg"
+                       style="width: 64px;height: 64px;"></span>
+                    <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+              <span class="clear">
+                  <span class="block m-t-xs">
+                      <strong class="font-bold"><{$member.username}></strong>
+                  </span>
+              </span>
+                    </a>
+                    <span style="color:#F30">
+                <switch name="member.groupid">
+				    <case value="1">总管理员</case>
+				    <case value="2">运营管理员</case>
+				    <case value="3">财务管理员</case>
+				</switch></span>
+                </div>
+                <div class="logo-element">MENU</div>
+            </li>
+            <volist name="navmenus" id="nm">
+                <li><a href="<if condition="!count($nm[$nm['id']])"><{:U($nm[menu_name])}><else/>#</if>"> <i
+                    class="<{$nm['icon']}>"></i> <span
+                        class="nav-label"><{$nm['title']}></span>
+                    <if condition="$nm[$nm['id']]"><span class="fa arrow"></span> </if></a>
+                    <if condition="$nm[$nm['id']]">
+                    <ul class="nav nav-second-level">
+                        <volist name="nm[$nm['id']]" id="sub">
+                            <li><a href="<{:U($sub[menu_name])}>" class="J_menuItem"><i
+                                    class="<{$sub['icon']}>"></i> <{$sub['title']}></a></li>
+                        </volist>
+                    </ul>
+                    </if>
+                </li>
+            </volist>
+        </ul>
+    </div>
+</nav>

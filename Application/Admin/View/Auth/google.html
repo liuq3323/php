@@ -1,0 +1,241 @@
+<!doctype html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title><{$sitename}> 谷歌身份验证</title>
+    <link href="/Public/Front/newadmin/css/login.css" rel="stylesheet" type="text/css">
+    <link href="/Public/Front/css/font-awesome.min.css" rel="stylesheet">
+    <script src="/Public/js/jquery.js" type="text/javascript"></script>
+    <script src="/Public/Front/newadmin/resource/js/common.js" type="text/javascript"></script>
+    <script src="/Public/Front/newadmin/resource/js/jquery.validation.min.js"></script>
+    <script src="/Public/Front/newadmin/js/jquery.supersized.min.js" ></script>
+    <script src="/Public/Front/newadmin/js/jquery.progressBar.js" type="text/javascript"></script>
+    <style>
+        .submit{
+            position: relative;
+        }
+        .form-group{width:300px!important;}
+    </style>
+    <script>
+        function getOs()
+        {
+            var OsObject = "";
+            if(navigator.userAgent.indexOf("MSIE")>0) {
+                return "MSIE";
+            }
+            else if(isFirefox=navigator.userAgent.indexOf("Firefox")>0){
+                return "Firefox";
+            }
+            else if(isMozilla=navigator.userAgent.indexOf("Opera")>0){ //这个也被判断为chrome
+                return "Opera";
+            }
+            else if(isFirefox=navigator.userAgent.indexOf("Chrome")>0){
+                return "Chrome";
+            }
+            else if(isSafari=navigator.userAgent.indexOf("Safari")>0) {
+                return "Safari";
+            }
+            else if(isCamino=navigator.userAgent.indexOf("Camino")>0){
+                return "Camino";
+            }
+            else if(isMozilla=navigator.userAgent.indexOf("Gecko/")>0){
+                return "Gecko";
+            }
+
+        }
+
+
+    </script>
+</head>
+
+<body>
+<!--主体-->
+
+<div class="login-layout">
+    <div class="top" style="height:60px;">
+        <h5>【<{$sitename}>】 管理平台<em></em></h5>
+        <h2>谷歌身份验证</h2>
+    </div>
+    <form method="post" class="layui-form" id="form_google" action="<{:U('Admin/Auth/google')}>">
+        <input name="action_type" type="hidden" value="<{$action_type}>">
+        <eq name="google_token" value="">
+        <div class="lock-holder" style="text-align: center;width:300px;">
+            <div class="form-group  input-username">
+                <p style="color:#fff">手机打开Google Authenticator(谷歌身份验证器)，<br>扫码二维码开启登录两步验证</p>
+            </div>
+            <div class="form-group">
+                <img src="<{$qrCodeUrl}>" width="150px">
+                <p style="color:#fff;">不能扫码？点击 <a href="javascript:layer.alert('<{$secret}>')" style="color:#ef4300;text-decoration:none;">查看密钥</a> 手动添加</p>
+            </div>
+            <div class="form-group" style="margin: 20px 0 20px;position: relative;">
+                <label>谷歌验证码</label><input name="code" id="code" class="input-code" autocomplete="off" type="text" required lay-verify="required" pattern="[\S]{6}[\S]*" title="请输入6位验证码">
+            </div>
+        </div>
+            <div class="submit">
+                <span>
+              <input name="" class="input-button btn-submit" type="button" value="绑定">
+            </span>
+            </div>
+            <div class="submit2"></div>
+        <else />
+            <div class="lock-holder" style="text-align: center;width:300px;">
+              <style type="text/css">
+                .code{top: 180px;left: 275px;}
+            </style>
+                <div class="form-group  input-username">
+                    <p style="color:#fff">手机打开Google Authenticator(谷歌身份验证器)，查看验证码</p>
+                </div>
+                 <div class="form-group" style="margin: 20px 0 20px;position: relative;">
+                <label>谷歌验证码</label><input name="code" id="code" class="input-code" autocomplete="off" type="text" required lay-verify="required" pattern="[\S]{6}[\S]*" title="请输入6位验证码">
+            </div>
+            </span>
+                    <span>
+                        <div class="submit">
+              <input name="" class="input-button btn-submit" type="button" value="验证">
+            </span>
+
+                </div>
+                <div class="submit2"></div>
+            <div class="form-group">
+            <p style="color:#fff;">找不到谷歌安全码？ <a href="<{:U('Auth/unbindGoogle')}>" style="color:#4395ff;text-decoration:none;">解绑</a></p>
+            </div>
+        </eq>
+    </form>
+    <div class="bottom">
+    </div>
+</div>
+
+
+<script>
+    // 定义全局JS变量
+    var GV = {
+        current_controller: "admin//",
+        base_url: "/Public/Front"
+    };
+</script>
+
+    <script src="/Public/Front/js/plugins/layui/layui.js"></script>
+
+<!--页面JS脚本-->
+
+    <script>
+        function changeCode() {
+
+            $("#codeimage").attr("src",'<{:U("Admin/Login/verifycode")}>?t='+parseInt(40*Math.random()));
+        };
+	layui.use(['laydate', 'layer', 'element'], function(){
+  var laydate = layui.laydate //日期
+  ,layer = layui.layer //弹层
+  ,element = layui.element; //元素操作
+  });
+        $(function(){
+            $.supersized({
+                // 功能
+                slide_interval     : 4000,
+                transition         : 1,
+                transition_speed   : 1000,
+                performance        : 1,
+                // 大小和位置
+                min_width          : 0,
+                min_height         : 0,
+                vertical_center    : 1,
+                horizontal_center  : 1,
+                fit_always         : 0,
+                fit_portrait       : 1,
+                fit_landscape      : 0,
+                // 组件
+                slide_links        : 'blank',
+                slides             : [
+                    {image : '/Public/Front/newadmin/images/login/1.jpg'},
+                    {image : '/Public/Front/newadmin/images/login/2.jpg'},
+                    {image : '/Public/Front/newadmin/images/login/3.jpg'},
+                    {image : '/Public/Front/newadmin/images/login/4.jpg'},
+                    {image : '/Public/Front/newadmin/images/login/5.jpg'}
+                ]
+            });
+            //显示隐藏验证码
+            $("#hide").click(function(){
+                $(".code").fadeOut("slow");
+            });
+            $("#captcha").focus(function(){
+
+                $(".code").fadeIn("fast");
+                if(getOs()=="Firefox"){
+                    $(".code").css("top","-85px");
+                }
+            });
+            //跳出框架在主窗口登录
+            if(top.location!=this.location)	top.location=this.location;
+            $('#user_name').focus();
+            $("#captcha").nc_placeholder();
+            //动画登录
+            $('.btn-submit').click(function(data){
+                $('.btn-submit').addClass('animated fadeOutUp');
+                setTimeout(function () {
+                        $('.submit').hide();
+                        $('.submit2').html('<div class="progress"><div class="progress-bar progress-bar-success" aria-valuetransitiongoal="100"></div></div>');
+                        $('.progress .progress-bar').progressbar({
+                            done : function() {
+                                $.ajax({
+                                    url: $("#form_google").attr("action"),
+                                    type: $("#form_google").attr("method"),
+                                    data:$("#form_google").serialize(),
+                                    success: function (info) {
+										if(info.status){
+											setTimeout(function () {
+												location.href = info.url;
+											}, 1000);
+											layer.msg(info.info);
+										}else{
+											layer.msg(info.info,{icon:5});
+                                            setTimeout(function () {
+                                                window.location.reload();
+                                            }, 1000);
+											return false;
+										}
+                                    }
+                                });
+                            }
+                        });
+                    },
+                    300);
+
+            });
+            // 回车提交表单
+            $('#form_login').keydown(function(event){
+                if (event.keyCode == 13) {
+                    $('.btn-submit').click();
+                }
+            });
+            // 定义全局JS变量
+            var GV = {
+                current_controller: "admin//"
+            };
+        });
+    </script>
+
+<script>
+    //固定层移动
+    $(function(){
+        //管理显示与隐藏
+        $("#admin-manager-btn").click(function () {
+            if ($(".manager-menu").css("display") == "none") {
+                $(".manager-menu").css('display', 'block');
+                $("#admin-manager-btn").attr("title","关闭快捷管理");
+                $("#admin-manager-btn").removeClass().addClass("arrow-close");
+            }
+            else {
+                $(".manager-menu").css('display', 'none');
+                $("#admin-manager-btn").attr("title","显示快捷管理");
+                $("#admin-manager-btn").removeClass().addClass("arrow");
+            }
+        });
+    });
+</script>
+</body>
+</html>
